@@ -3,9 +3,9 @@
 unbox mogwai at start, you can choose to read the manual for him or ignore it, if you read it 
 
 Manual: 
-Never feed him after midnight or before dawn 
-Never get him wet
-Keep him out of the sunlight 
+-Never feed him after midnight or before dawn 
+-Never get him wet
+-Keep him out of the sunlight 
 
 
 What do you want to do? 
