@@ -1,4 +1,4 @@
-# virtual-pe
+# virtual-pet
 
 unbox mogwai at start, you can choose to read the manual for him or ignore it, if you read it 
 
@@ -23,4 +23,3 @@ What do you want to do?
     - tuck him in :) (tiredness drains as time ticks on) will wake naturally when tiredness reaches 0, option to wake him up appears
 5. Do nothing
 6. Exit Game
-t
