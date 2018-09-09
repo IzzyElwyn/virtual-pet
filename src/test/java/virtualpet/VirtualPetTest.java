@@ -83,4 +83,6 @@ public void assertThatTirednessIs100After50TicksAnd50TicksOfRest() {
 	int check = underTest.getTiredness();
 	assertThat(check, is(100));
 }
+
+
 }

@@ -4,11 +4,11 @@ package virtualpet;
 public class VirtualPet {
 
 
-	private int numMogwais;
 	private int hunger;
 	private int cleanliness;
 	private int boredom;
 	private int tiredness;
+	private int numMogwais;
 	
 	public int getNumMogwais() {
 		return numMogwais;
@@ -68,6 +68,7 @@ public class VirtualPet {
 
 	public void waterBath() {
 		numMogwais += 3;
+		
 		
 	}
 
