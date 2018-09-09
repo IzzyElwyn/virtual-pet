@@ -9,6 +9,7 @@ public class VirtualPetTest {
 	
 VirtualPet underTest = new VirtualPet();
 
+
 @Test
 public void assertThatHungerIs98After2Ticks() {
 	underTest.tick(2);
@@ -64,7 +65,7 @@ public void assertThatBoredomIs75After25Ticks() {
 @Test
 public void assertThatBoredomIs75After50TicksAnd1Song() {
 	underTest.tick(50);
-	underTest.Sing();
+	underTest.singWithMogwai();
 	int check = underTest.getBoredom();
 	assertThat(check, is(75));
 }
@@ -92,6 +93,33 @@ public void assertThatHungerBelow80IsOkayMogwai() {
 }
 
 @Test
+public void assertThatBoredomBelow80IsOkayMogwai() {
+	underTest.tick(20);
+	underTest.feed();
+	String check = underTest.getMood();
+	assertThat(check, is("Gizmo is Okay"));
+}
+
+@Test
+public void assertThatCleanlinessBelow80IsOkayMogwai() {
+	underTest.tick(20);
+	underTest.feed();
+	underTest.singWithMogwai();
+	String check = underTest.getMood();
+	assertThat(check, is("Gizmo is Okay"));
+}
+
+@Test
+public void assertThatTirednessBelow80IsOkayMogwai() {
+	underTest.tick(20);
+	underTest.feed();
+	underTest.singWithMogwai();
+	underTest.dustBath();
+	String check = underTest.getMood();
+	assertThat(check, is("Gizmo is Okay"));
+}
+
+@Test
 public void assertThatHungerBelow40IsSadMogwai() {
 	underTest.tick(60);
 	String check = underTest.getMood();
@@ -99,9 +127,76 @@ public void assertThatHungerBelow40IsSadMogwai() {
 }
 
 @Test
+public void assertThatBoredomBelow40IsSadMogwai() {
+	underTest.tick(60);
+	underTest.feed();
+	String check = underTest.getMood();
+	assertThat(check, is("Gizmo is Sad"));
+}
+
+@Test
+public void assertThatCleanlinessBelow40IsSadMogwai() {
+	underTest.tick(60);
+	underTest.feed();
+	underTest.singWithMogwai();
+	String check = underTest.getMood();
+	assertThat(check, is("Gizmo is Sad"));
+}
+
+@Test
+public void assertThatTirednessBelow40IsSadMogwai() {
+	underTest.tick(60);
+	underTest.feed();
+	underTest.singWithMogwai();
+	underTest.dustBath();
+	String check = underTest.getMood();
+	assertThat(check, is("Gizmo is Sad"));
+}
+
+@Test
+public void assertThatBoredomAbove80IsHappyMogwai() {
+	underTest.tick(10);
+	String check = underTest.getMood();
+	assertThat(check, is("Gizmo is Happy"));
+}
+
+@Test
 public void assertThatHungerAbove80IsHappyMogwai() {
 	underTest.tick(10);
 	String check = underTest.getMood();
 	assertThat(check, is("Gizmo is Happy"));
+}
+
+@Test
+public void assertThatOtherMogwaisStatsDrain3TimesAsFast() {
+	underTest.waterBath();
+	underTest.tick(10);
+	int[] check = underTest.checkOtherMogwaiHunger();
+	int[] expected = new int[] {70, 70, 70};
+	assertThat(check, is(expected));	
+}
+
+@Test
+public void assertThatOtherMogwaiCanBeGivenAway() {
+	underTest.waterBath();
+	underTest.giveAwayMogwai();
+	int check = underTest.getNumMogwais();
+	assertThat(check, is(3));
+}
+
+@Test
+public void assertThatYouCanSingWithMogwaiToRechargeBoredomBy25() {
+	underTest.tick(50);
+	underTest.singWithMogwai();
+	int check = underTest.getBoredom();
+	assertThat(check, is(75));
+}
+
+@Test
+public void assertThatWalksRechargeBoredomBy50() {
+	underTest.tick(50);
+	underTest.walkWithMogwai();
+	int check = underTest.getBoredom();
+	assertThat(check, is(100));
 }
 }
