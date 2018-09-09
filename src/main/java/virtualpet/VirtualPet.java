@@ -1,18 +1,17 @@
 package virtualpet;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class VirtualPet {
-
 
 	private int hunger;
 	private int cleanliness;
 	private int boredom;
 	private int tiredness;
-	private int numMogwais;
+
+	List<OtherMogwai> mogwai = new ArrayList<>();
 	
-	public int getNumMogwais() {
-		return numMogwais;
-	}
 
 	public int getHunger() {
 		return hunger;
@@ -30,14 +29,14 @@ public class VirtualPet {
 		return tiredness;
 	}
 	
-	public VirtualPet(int numMogwais) {
-		this.numMogwais = numMogwais;
+	public VirtualPet() {
 		this.hunger = 100;
 		this.cleanliness = 100;
 		this.boredom = 100;
 		this.tiredness = 100;
 	}
 
+	
 	public void tick(int time) {
 		hunger -= time;
 		cleanliness -= time;
@@ -67,9 +66,10 @@ public class VirtualPet {
 	}
 
 	public void waterBath() {
-		numMogwais += 3;
-		
-		
+		addMogwai(null);
+		addMogwai(null);
+		addMogwai(null);
+
 	}
 
 	public String getMood() {
@@ -99,7 +99,13 @@ public class VirtualPet {
 			
 		}
 	}
+	
+	public void addMogwai(OtherMogwai mogwais) {
+		mogwai.add(mogwais);
+	}
 
-
+	public int getNumMogwais() {
+		return mogwai.size() + 1;
+	}
 
 }

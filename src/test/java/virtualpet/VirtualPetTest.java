@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class VirtualPetTest {
 	
-VirtualPet underTest = new VirtualPet(1);
+VirtualPet underTest = new VirtualPet();
 
 @Test
 public void assertThatHungerIs98After2Ticks() {
