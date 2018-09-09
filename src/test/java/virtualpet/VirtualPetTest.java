@@ -84,5 +84,24 @@ public void assertThatTirednessIs100After50TicksAnd50TicksOfRest() {
 	assertThat(check, is(100));
 }
 
+@Test
+public void assertThatHungerBelow80IsOkayMogwai() {
+	underTest.tick(20);
+	String check = underTest.getMood();
+	assertThat(check, is("Gizmo is Okay"));
+}
 
+@Test
+public void assertThatHungerBelow40IsSadMogwai() {
+	underTest.tick(60);
+	String check = underTest.getMood();
+	assertThat(check, is("Gizmo is Sad"));
+}
+
+@Test
+public void assertThatHungerAbove80IsHappyMogwai() {
+	underTest.tick(10);
+	String check = underTest.getMood();
+	assertThat(check, is("Gizmo is Happy"));
+}
 }

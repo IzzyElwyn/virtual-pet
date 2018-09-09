@@ -72,6 +72,34 @@ public class VirtualPet {
 		
 	}
 
+	public String getMood() {
+		
+	if (hunger > 80) {
+		
+		System.out.println(" \\TT\\~~/TT/ ");
+		System.out.println("   (_^o^_)    ");
+		System.out.println("  <({ _ })>   ");
+		System.out.println("   |_| |_|    ");
+		return "Gizmo is Happy";
+	}
+		else if(hunger <= 80 && hunger > 40) {
+			
+			System.out.println(" \\TT\\~~/TT/  ");
+			System.out.println("  (_0_0_)  ");
+			System.out.println(" <({ _ })> ");
+			System.out.println("  |_| |_|  ");
+		return "Gizmo is Okay";
+		} else {
+			
+			System.out.println(" <TT\\~~/TT>");
+			System.out.println("  (_-_-_)	");
+			System.out.println(" <({ _ })>  ");
+			System.out.println("  |_| |_|   ");
+			return "Gizmo is Sad";
+			
+		}
+	}
+
 
 
 }
