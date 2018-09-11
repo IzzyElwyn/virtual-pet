@@ -1,28 +1,36 @@
 # virtual-pet
 
-unbox mogwai at start, you can choose to read the manual for him or ignore it, if you read it 
+unbox mogwai at start, you can choose to read the manual for him or ignore it
+reading it will provide invaluable information about his care (And things to avoid if you don't want to 'lose' the game)
 
 Manual:
- 
--Never feed him after midnight or before dawn 
-
--Never get him wet
-
--Keep him out of the sunlight 
+1. Never feed him after midnight or before dawn
+2. Never get him wet
+3. Keep him out of the sunlight
 
 
-What do you want to do? 
-1. Feed Gizmo
-    - (hunger (check to see if it's after midnight and before dawn --- if so GREMLIN- you lose the game)
-2. Clean Gizmo 
-    - Dust bath
-    - Water bath ((If you water it, more mogwai appear and stats drain 4 times faster. you can give them away, (you can ask your neighbors but they'll randomly accept or reject the mogwai) if one of them eats after midnight (this will also be random) you lose the game))
-3. Play with Gizmo
-    - Go for a walk! (If it's daytime, it dies :( ) (boredom decreases by 50 for night walks)
-    - Sing (boredom decreases by 25)
-4. Check the Time
-    - return tick time 
-4. Put Gizmo to sleep 
-    - tuck him in :) (tiredness drains as time ticks on) will wake naturally when tiredness reaches 0, option to wake him up appears
-5. Do nothing
-6. Exit Game
+What can I do with my new bff Gizmo?
+- Feed Gizmo
+    - (hunger (check to see if it's after midnight and before dawn --- if so, Gizmo will change into a GREMLIN and you lose the game)
+- Clean Gizmo
+    - Give Gizmo a Dust Bath (Like a chinchilla)
+    - Give Gizmo a regular Water Bath
+      (If you water him more mogwai appear
+       you must give them away to your neighbors or Gizmo will be too stressed out to play
+       (neighbors will randomly accept or reject the mogwai)
+       **planning to add a timer in this loop, if the additional mogwai are not given away before it hits 0, they turn into gremlins and you lose the game**
+- Play with Gizmo
+    - Go for a walk!
+       **planning to add a time check component here, if the walk is during the day, the sunlight will burn Gizmo to a crisp :(**
+    - Sing
+- Check the Time
+    - returns the hour in-game
+      - time moves fast in mogwai world... keep an eye on the time or risk feeding after midnight
+- Put Gizmo to sleep
+    - tiredness drains as time ticks on
+    - if you don't put Gizmo down for a nap, he'll naturally choose to sleep when his tiredness hits 0
+      - gameplay also sleeps on some ASCII sleepy mogwai art until Gizmo is back to full energy
+- Do nothing
+    - the lame option
+- Exit Game
+    - See you later, Gizmo!
