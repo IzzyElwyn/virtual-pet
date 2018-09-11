@@ -70,7 +70,13 @@ public class VirtualPet {
 		mogwai.add(new OtherMogwai());
 	}
 
-	public void singWithMogwai() {
+	public void singWithMogwai() throws InterruptedException {
+		System.out.println("Gizmo has a lovely singing voice!\n");
+		System.out.println(" \\TT\\~~/TT/    * *     ");
+		System.out.println("   (_^o^_)  * *          ");
+		System.out.println("  <({ _ })>              ");
+		System.out.println("   |_| |_|             \n");
+		Thread.sleep(10000);
 		if (getBoredom() + 25 > 100) {
 			boredom = 100;
 		} else {
