@@ -56,11 +56,11 @@ public class VirtualPetApp {
 					case 1: System.out.println(gizmo.offerOtherMogwaiToNeighbor());
 							gizmo.tick();
 					break;
-					case 2: gizmo.getStatus(); 
+					case 2: System.out.println(gizmo.getStatus()); 
 							gizmo.tick();
 					break;
 					case 3: System.out.println(gizmo.checkTime());
-							Thread.sleep(30000);
+							Thread.sleep(1000);
 							gizmo.tick();
 					break;
 					default: System.out.println(" ");
@@ -112,11 +112,14 @@ public class VirtualPetApp {
 				input.nextLine();
 			}
 
-		} while (menuOption != 8 && !gizmo.getIsGremlin());
+		} while (menuOption != 8 && !gizmo.getIsGremlin() && gizmo.getIsAlive());
 		if (gizmo.getIsGremlin()) {
 			System.out.println(gizmo.getMood());
 			System.exit(0);
-		} else {
+		} else if (!gizmo.getIsAlive()) {
+			System.out.println(gizmo.burnsUp());
+			
+		} else 	{
 			
 			System.out.println("See you later, Gizmo!");
 

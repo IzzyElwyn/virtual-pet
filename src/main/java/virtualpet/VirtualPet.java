@@ -15,6 +15,7 @@ public class VirtualPet {
 	private int boredom;
 	private int tiredness;
 	private boolean isGremlin;
+	private boolean isAlive;
 	private int tickLog;
 
 	public int getHunger() {
@@ -32,9 +33,13 @@ public class VirtualPet {
 	public int getTiredness() {
 		return tiredness;
 	}
-	
+
 	public boolean getIsGremlin() {
 		return isGremlin;
+	}
+
+	public boolean getIsAlive() {
+		return isAlive;
 	}
 
 	public int getTickLog() {
@@ -47,6 +52,7 @@ public class VirtualPet {
 		this.boredom = 100;
 		this.tiredness = 100;
 		this.isGremlin = false;
+		this.isAlive = true;
 		this.tickLog = 0;
 	}
 
@@ -85,12 +91,37 @@ public class VirtualPet {
 	}
 
 	public void walkWithMogwai() {
-		if (getBoredom() + 50 > 100) {
-			boredom = 100;
+		if (checkHourOfDay() > 6 && checkHourOfDay() < 20) {
+
+			setIsAlive(false);
+
 		} else {
-			boredom += 50;
+			if (getBoredom() + 50 > 100) {
+				boredom = 100;
+			} else {
+				boredom += 50;
+			}
 		}
 
+	}
+
+	public String burnsUp() {
+
+		System.out.println("      ((    ");
+		System.out.println("       ))   ");
+		System.out.println("      //    ");
+		System.out.println("     (      ");
+		System.out.println("   )        ");
+		System.out.println("  ) \\      ");
+		System.out.println(" /   (      ");
+		System.out.println(" \\(_)/   \n");
+		return "Gizmo burned to a crisp in the sunlight .... Game Over";
+
+	}
+
+	private void setIsAlive(boolean isStillAlive) {
+		isAlive = false;
+		
 	}
 
 	public void rest() throws InterruptedException {
@@ -102,55 +133,45 @@ public class VirtualPet {
 		int restTime = (100 - getTiredness()) * 200;
 		Thread.sleep(restTime);
 		tiredness = 100;
-		
+
 	}
 
 	public String getStatus() {
-		return "\nGizmo is at:" 
-				+ "\nHunger: " 
-				+ getHunger() 
-				+ "\nCleanliness: " 
-				+ getCleanliness()
-				+ "\nBoredom: " 
-				+ getBoredom() 
-				+ "\nTiredness: " 
-				+ getTiredness();
+		return "\nGizmo is at:" + "\nHunger: " + getHunger() + "\nCleanliness: " + getCleanliness() + "\nBoredom: "
+				+ getBoredom() + "\nTiredness: " + getTiredness();
 	}
 
 	public String getMood() {
 		if (!getIsGremlin()) {
 
-		if ((hunger) <= 40 || boredom <= 40 || cleanliness <= 40 || tiredness <= 40) {
+			if ((hunger) <= 40 || boredom <= 40 || cleanliness <= 40 || tiredness <= 40) {
 
-			System.out.println(" <TT\\~~/TT>");
-			System.out.println("  (_;_;_)	");
-			System.out.println(" <({ _ })>  ");
-			System.out.println("  |_| |_| \n");
-			return "Gizmo is Sad\n";
-		} else if ((hunger <= 80 && hunger > 40) || (boredom <= 80 && boredom > 40)
-				|| (cleanliness <= 80 && cleanliness > 40) || (tiredness <= 80 && cleanliness > 40)) {
+				System.out.println(" <TT\\~~/TT>");
+				System.out.println("  (_;_;_)	");
+				System.out.println(" <({ _ })>  ");
+				System.out.println("  |_| |_| \n");
+				return "Gizmo is Sad\n";
+			} else if ((hunger <= 80 && hunger > 40) || (boredom <= 80 && boredom > 40)
+					|| (cleanliness <= 80 && cleanliness > 40) || (tiredness <= 80 && cleanliness > 40)) {
 
-			System.out.println("\\TT\\~~/TT/");
-			System.out.println("  (_0_0_)   ");
-			System.out.println(" <({ _ })>  ");
-			System.out.println("  |_| |_| \n");
-			return "Gizmo is Okay\n";
-		} else {
-			System.out.println(" \\TT\\~~/TT/ ");
-			System.out.println("   (_^o^_)    ");
-			System.out.println("  <({ _ })>   ");
-			System.out.println("   |_| |_|  \n");
-			return "Gizmo is Happy\n";
-		} 
+				System.out.println("\\TT\\~~/TT/");
+				System.out.println("  (_0_0_)   ");
+				System.out.println(" <({ _ })>  ");
+				System.out.println("  |_| |_| \n");
+				return "Gizmo is Okay\n";
+			} else {
+				System.out.println(" \\TT\\~~/TT/ ");
+				System.out.println("   (_^o^_)    ");
+				System.out.println("  <({ _ })>   ");
+				System.out.println("   |_| |_|  \n");
+				return "Gizmo is Happy\n";
+			}
 		} else {
 			System.out.println("    <TTTTWTTTT>     ");
 			System.out.println("      \\* w */      ");
 			System.out.println("___w__[_____]_w_____");
 			return "Gizmo is now a Gremlin.... Game Over";
 		}
-		
-		
-		
 
 	}
 
@@ -162,24 +183,22 @@ public class VirtualPet {
 		return "There are now " + getNumMogwais() + " Mogwai in the house...\n";
 	}
 
-
 	public int getNumMogwais() {
 		return mogwai.size() + 1;
 	}
-	
-	public String otherMogwaiGremlins() {
-			System.out.println("    <TTTTWTTTT>     ");
-			System.out.println("     \\* w */       ");
-			System.out.println("___w_[______]_w_____");
-			return "The other mogwai turned into a Gremlin... Game Over";
+
+	public String otherMogwaiGremlinsArt() {
+		System.out.println("    <TTTTWTTTT>     ");
+		System.out.println("     \\* w */       ");
+		System.out.println("___w_[______]_w_____");
+		return "The other mogwai turned into a Gremlin... Game Over";
 	}
-	
-	public boolean otherGremlinsPresent() {
+
+	public boolean otherMogwaiAreGremlins() {
 		OtherMogwai gremlin = new OtherMogwai();
 		gremlin.setIsGremlin(true);
 		return gremlin.getIsGremlin();
 	}
-
 
 	public String offerOtherMogwaiToNeighbor() {
 		int randomNumber = rand.nextInt(100) + 1;
@@ -202,7 +221,7 @@ public class VirtualPet {
 		if (getHunger() - randomTick < 0) {
 			hunger = 0;
 		} else {
-		hunger -= randomTick;
+			hunger -= randomTick;
 		}
 		if (getCleanliness() - randomTick < 0) {
 			cleanliness = 0;
@@ -219,16 +238,9 @@ public class VirtualPet {
 		} else {
 			tiredness -= randomTick;
 		}
-		
-		logTicks(randomTick);
-		setTime();
-	}
 
-	public void logTicks(int thisTick) {
-		tickLog += thisTick;
-	}
+		tickLog += randomTick;
 
-	public void setTime() {
 		if (tickLog > 120) {
 			tickLog = tickLog - 120;
 		}
