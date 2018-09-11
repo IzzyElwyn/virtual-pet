@@ -1,32 +1,21 @@
 package virtualpet;
 
 public class OtherMogwai {
-
-	private int hunger;
-	private boolean isItAGremlin;
-
 	
-	public int getHunger() {
-		return hunger;
-	}
+	private boolean isGremlin;
 	
-	public boolean getIsItAGremlin() {
-		return isItAGremlin;
+	public boolean getIsGremlin() {
+		return isGremlin;
 	}
+
 	
 	public OtherMogwai() {
-		this.hunger = 100;
-		this.isItAGremlin = false;
-	}
-	
-	public OtherMogwai(int hunger, boolean isItAGremlin) {
-		this.hunger = hunger;
-		this.isItAGremlin = isItAGremlin;
+		this.isGremlin = false;
 	}
 
-	public void setHunger(int newHunger) {
-		hunger = newHunger;
-		
+
+	public void setIsGremlin(boolean thereisGremlin) {
+		isGremlin = thereisGremlin;
 	}
 
 }
