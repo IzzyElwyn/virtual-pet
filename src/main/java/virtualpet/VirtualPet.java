@@ -18,6 +18,10 @@ public class VirtualPet {
 	private boolean isAlive;
 	private int tickLog;
 
+	private void setIsAlive(boolean isStillAlive) {
+		isAlive = false;
+	}
+
 	public int getHunger() {
 		return hunger;
 	}
@@ -57,6 +61,8 @@ public class VirtualPet {
 	}
 
 	public void feed() {
+		// In this game the rule about feeding after midnight applies between midnight
+		// and dawn, which is 6 in the game world
 		if (checkHourOfDay() >= 0 && checkHourOfDay() <= 6) {
 			isGremlin = true;
 		} else if (getHunger() + 25 > 100) {
@@ -77,12 +83,10 @@ public class VirtualPet {
 	}
 
 	public void singWithMogwai() throws InterruptedException {
-		System.out.println("Gizmo has a lovely singing voice!\n");
-		System.out.println(" \\TT\\~~/TT/    * *     ");
-		System.out.println("   (_^o^_)  * *          ");
-		System.out.println("  <({ _ })>              ");
-		System.out.println("   |_| |_|             \n");
-		Thread.sleep(10000);
+
+		gizmoSingsASCIIArtAndMessage();
+
+		Thread.sleep(9000);
 		if (getBoredom() + 25 > 100) {
 			boredom = 100;
 		} else {
@@ -91,6 +95,7 @@ public class VirtualPet {
 	}
 
 	public void walkWithMogwai() {
+		// exposing Gizmo to sunlight results in death
 		if (checkHourOfDay() > 6 && checkHourOfDay() < 20) {
 
 			setIsAlive(false);
@@ -105,31 +110,8 @@ public class VirtualPet {
 
 	}
 
-	public String burnsUp() {
-
-		System.out.println("      ((    ");
-		System.out.println("       ))   ");
-		System.out.println("      //    ");
-		System.out.println("     (      ");
-		System.out.println("   )        ");
-		System.out.println("  ) \\      ");
-		System.out.println(" /   (      ");
-		System.out.println(" \\(_)/   \n");
-		return "Gizmo burned to a crisp in the sunlight .... Game Over";
-
-	}
-
-	private void setIsAlive(boolean isStillAlive) {
-		isAlive = false;
-		
-	}
-
 	public void rest() throws InterruptedException {
-		System.out.println("Shhhh....Gizmo is Sleeping\n");
-		System.out.println(" <TT\\~~/TT>   Z Z  ");
-		System.out.println("  (_-_-_)  z z	    ");
-		System.out.println(" <({ _ })>          ");
-		System.out.println("  |_| |_|         \n");
+		gizmorestsASCIIArtAndMessage();
 		int restTime = (100 - getTiredness()) * 200;
 		Thread.sleep(restTime);
 		tiredness = 100;
@@ -146,58 +128,36 @@ public class VirtualPet {
 
 			if ((hunger) <= 40 || boredom <= 40 || cleanliness <= 40 || tiredness <= 40) {
 
-				System.out.println(" <TT\\~~/TT>");
-				System.out.println("  (_;_;_)	");
-				System.out.println(" <({ _ })>  ");
-				System.out.println("  |_| |_| \n");
-				return "Gizmo is Sad\n";
+				return gizmoIsSadASCIIArtAndMessage();
+
 			} else if ((hunger <= 80 && hunger > 40) || (boredom <= 80 && boredom > 40)
 					|| (cleanliness <= 80 && cleanliness > 40) || (tiredness <= 80 && cleanliness > 40)) {
 
-				System.out.println("\\TT\\~~/TT/");
-				System.out.println("  (_0_0_)   ");
-				System.out.println(" <({ _ })>  ");
-				System.out.println("  |_| |_| \n");
-				return "Gizmo is Okay\n";
+				return gizmoIsOkayASCIIArtAndMessage();
+
 			} else {
-				System.out.println(" \\TT\\~~/TT/ ");
-				System.out.println("   (_^o^_)    ");
-				System.out.println("  <({ _ })>   ");
-				System.out.println("   |_| |_|  \n");
-				return "Gizmo is Happy\n";
+				return gizmoIsHappyASCIIArtAndMessage();
 			}
 		} else {
-			System.out.println("    <TTTTWTTTT>     ");
-			System.out.println("      \\* w */      ");
-			System.out.println("___w__[_____]_w_____");
-			return "Gizmo is now a Gremlin.... Game Over";
+			return gizmoIsAGremlinNowASCIIArtAndMessage();
 		}
 
 	}
 
-	public String otherMogwaiPresent() {
-		System.out.println(" <TT\\~~/TT> ");
-		System.out.println("   (_@.@_)   ");
-		System.out.println("  <({ _ })>  ");
-		System.out.println("   |_| |_| \n");
-		return "There are now " + getNumMogwais() + " Mogwai in the house...\n";
+	public int getNumMogwai() {
+		return mogwai.size();
 	}
 
-	public int getNumMogwais() {
-		return mogwai.size() + 1;
+	public void otherMogwaiAreGremlinsNow() {
+	
+		for (int i = mogwai.size() - 1; i > 0; i--) {
+			mogwai.get(0).setIsGremlin(true);
+		}
+		
 	}
-
-	public String otherMogwaiGremlinsArt() {
-		System.out.println("    <TTTTWTTTT>     ");
-		System.out.println("     \\* w */       ");
-		System.out.println("___w_[______]_w_____");
-		return "The other mogwai turned into a Gremlin... Game Over";
-	}
-
+		
 	public boolean otherMogwaiAreGremlins() {
-		OtherMogwai gremlin = new OtherMogwai();
-		gremlin.setIsGremlin(true);
-		return gremlin.getIsGremlin();
+		return mogwai.get(0).getIsGremlin();
 	}
 
 	public String offerOtherMogwaiToNeighbor() {
@@ -246,11 +206,16 @@ public class VirtualPet {
 		}
 	}
 
+	// since several aspects of the virtual pet are time dependent and I want time
+	// to move at a faster rate in-game, I've decided that every 5 ticks is the
+	// equivalent to one hour
 	public int checkHourOfDay() {
 		int hourOfDay = (tickLog / 5);
 		return hourOfDay;
 	}
 
+	// this translates my numeric game-time to a easily digestible real world
+	// equivalent for the player
 	public String checkTime() {
 		int hourOfDay = (tickLog / 5);
 		if (hourOfDay >= 1 && hourOfDay < 2) {
@@ -302,6 +267,91 @@ public class VirtualPet {
 		} else {
 			return "It is 12 AM";
 		}
+	}
+	
+	public String gizmosNote() {
+		return "The Note Reads: " + "\n\"Follow These Three Rules At All Costs"
+				+ "\n1. Never Get Gizmo Wet" + "\n2. Never Take Gizmo Out In The Sun"
+				+ "\n3. Never Ever Feed A Mogwai After Midnight\"\n\n\n\n\n";
+	}
+
+	public void gizmoSingsASCIIArtAndMessage() {
+		System.out.println("Gizmo has a lovely singing voice!\n");
+		System.out.println(" \\TT\\~~/TT/    * *     ");
+		System.out.println("   (_^o^_)  * *          ");
+		System.out.println("  <({ _ })>              ");
+		System.out.println("   |_| |_|             \n");
+	}
+
+	public void gizmorestsASCIIArtAndMessage() {
+
+		System.out.println("Shhhh....Gizmo is Sleeping\n");
+		System.out.println(" <TT\\~~/TT>   Z Z  ");
+		System.out.println("  (_-_-_)  z z	    ");
+		System.out.println(" <({ _ })>          ");
+		System.out.println("  |_| |_|         \n");
+	}
+
+	public String gizmoIsHappyASCIIArtAndMessage() {
+		System.out.println(" \\TT\\~~/TT/ ");
+		System.out.println("   (_^o^_)    ");
+		System.out.println("  <({ _ })>   ");
+		System.out.println("   |_| |_|  \n");
+		return "Gizmo is Happy\n";
+	}
+
+	public String gizmoIsOkayASCIIArtAndMessage() {
+		System.out.println("\\TT\\~~/TT/");
+		System.out.println("  (_0_0_)   ");
+		System.out.println(" <({ _ })>  ");
+		System.out.println("  |_| |_| \n");
+		return "Gizmo is Okay\n";
+	}
+
+	public String gizmoIsSadASCIIArtAndMessage() {
+
+		System.out.println(" <TT\\~~/TT>");
+		System.out.println("  (_;_;_)	");
+		System.out.println(" <({ _ })>  ");
+		System.out.println("  |_| |_| \n");
+		return "Gizmo is Sad\n";
+	}
+
+	public String otherMogwaiPresentASCIIArtAndMessage() {
+		System.out.println(" <TT\\~~/TT> ");
+		System.out.println("   (_@.@_)   ");
+		System.out.println("  <({ _ })>  ");
+		System.out.println("   |_| |_| \n");
+		return "There are now " + getNumMogwai() + " Mogwai in the house...\n";
+	}
+
+	public String otherMogwaiGremlinsASCIIArtAndMessage() {
+		System.out.println("   <TTTT\\~/TTTT>   ");
+		System.out.println("      \\* w */      ");
+		System.out.println("___w_[______]_w_____");
+		return "The other mogwai turned into a Gremlin... Game Over";
+	}
+
+	public String gizmoIsAGremlinNowASCIIArtAndMessage() {
+
+		System.out.println("   <TTTT\\~/TTTT>   ");
+		System.out.println("      \\* w */      ");
+		System.out.println("___w__[_____]_w_____");
+		return "Gizmo is now a Gremlin.... Game Over";
+	}
+
+	public String burnsUpASCIIArtAndMessage() {
+
+		System.out.println("      ((    ");
+		System.out.println("       ))   ");
+		System.out.println("      //    ");
+		System.out.println("     (      ");
+		System.out.println("   )        ");
+		System.out.println("  ) \\      ");
+		System.out.println(" /   (      ");
+		System.out.println(" \\(_)/   \n");
+		return "Gizmo burned to a crisp in the sunlight .... Game Over";
+
 	}
 
 }

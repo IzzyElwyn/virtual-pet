@@ -8,14 +8,14 @@ public class OtherMogwai {
 		return isGremlin;
 	}
 
+	public void setIsGremlin(boolean thereisGremlin) {
+		isGremlin = thereisGremlin;
+	}
 	
 	public OtherMogwai() {
 		this.isGremlin = false;
 	}
 
 
-	public void setIsGremlin(boolean thereisGremlin) {
-		isGremlin = thereisGremlin;
-	}
 
 }

@@ -9,6 +9,7 @@ public class VirtualPetApp {
 		Scanner input = new Scanner(System.in);
 		VirtualPetMenus menu = new VirtualPetMenus();
 		int menuOption;
+		int gremlinCountDown = 5;
 
 		System.out.println(menu.getStartMenu());
 		int chooseToPlay = input.nextInt();
@@ -25,10 +26,8 @@ public class VirtualPetApp {
 		input.hasNextLine();
 
 		if (chooseToRead == 1) {
-			System.out.println("The Note Reads: " + "\n\"Follow These Three Rules At All Costs"
-					+ "\n1. Never Get Gizmo Wet" + "\n2. Never Take Gizmo Out In The Sun"
-					+ "\n3. Never Ever Feed A Mogwai After Midnight\"\n\n\n\n\n");
-			Thread.sleep(14000);
+			System.out.println(gizmo.gizmosNote());
+			Thread.sleep(12000);
 		}
 
 		do {
@@ -47,8 +46,10 @@ public class VirtualPetApp {
 				input.nextLine();
 				if (cleanSubMenuChoice == 1) {
 					gizmo.waterBath();
+					System.out.println("Exposure to water has created 3 more Mogwai...  ");
 					do {
-					System.out.println(gizmo.otherMogwaiPresent());
+					System.out.println("You now have " + gremlinCountDown + " attempts to get rid of them before there are dire consequences...");
+					System.out.println(gizmo.otherMogwaiPresentASCIIArtAndMessage());
 					System.out.println(menu.getMultipleMogwaiMenu());
 					int multipleMogwaiMenuChoice = input.nextInt();
 					input.nextLine();
@@ -65,10 +66,16 @@ public class VirtualPetApp {
 					break;
 					default: System.out.println(" ");
 							 gizmo.tick();
-					}
+					} 
 					
-					} while (gizmo.getNumMogwais() > 1);
+					gremlinCountDown--;
+					
+					} while (gizmo.getNumMogwai() > 1 && gremlinCountDown > 0);
 			
+					if (gizmo.getNumMogwai() > 1) {
+						gizmo.otherMogwaiAreGremlinsNow();
+					} 
+						gremlinCountDown = 5;
 					
 				} else if (cleanSubMenuChoice == 2) {
 					gizmo.dustBath();
@@ -112,15 +119,17 @@ public class VirtualPetApp {
 				input.nextLine();
 			}
 
-		} while (menuOption != 8 && !gizmo.getIsGremlin() && gizmo.getIsAlive());
+		} while (menuOption != 8 && !gizmo.getIsGremlin() && gizmo.getIsAlive() && !gizmo.otherMogwaiAreGremlins());
 		if (gizmo.getIsGremlin()) {
 			System.out.println(gizmo.getMood());
 			System.exit(0);
 		} else if (!gizmo.getIsAlive()) {
-			System.out.println(gizmo.burnsUp());
+			System.out.println(gizmo.burnsUpASCIIArtAndMessage());
 			
-		} else 	{
-			
+		} else if (gizmo.otherMogwaiAreGremlins()) 	{
+			System.out.println(gizmo.otherMogwaiGremlinsASCIIArtAndMessage());
+		
+		} else {
 			System.out.println("See you later, Gizmo!");
 
 		input.close();
