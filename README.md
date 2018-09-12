@@ -1,6 +1,7 @@
 # virtual-pet
 
 unbox mogwai at start, you can choose to read the manual for him or ignore it
+
 reading it will provide invaluable information about his care (And things to avoid if you don't want to 'lose' the game)
 
 Manual:
