@@ -37,20 +37,22 @@ public class VirtualPetMenus {
 	public VirtualPetMenus() {
 		this.startMenu = 
 				"You found a mysterious box!\n"
-			    + "\nPress 1 to open the box\nPress 2 to walk away";
+			    + "\nPress 1 to open the box"
+			    + "\nPress 2 to walk away";
 		this.noteMenu =
 				"You've found a Mogwai!\nHe has a name tag that says 'Gizmo' and a small note with him\n"
-				+ "\nPress 1 to read the note\nPress 2 to throw the note away";
+				+ "\nPress 1 to read the note"
+				+ "\nPress 2 to throw the note away";
 		this.mainMenu = 
 				"What would you like to do with Gizmo?\n" 
-				+ "Press 1 to Feed Gizmo\n"
-				+ "Press 2 to Clean Gizmo\n" 
-				+ "Press 3 to Entertain Gizmo\n" 
-				+ "Press 4 to put Gizmo Down for a Nap\n"
-				+ "Press 5 to check how Gizmo is feeling\n"
-				+ "Press 6 to Check the Time\n" 
-				+ "Press 7 to do Nothing\n" 
-				+ "Press 8 to Exit\n";
+				+ "Press 1 to feed Gizmo\n"
+				+ "Press 2 to clean Gizmo\n" 
+				+ "Press 3 to entertain Gizmo\n" 
+				+ "Press 4 to put Gizmo down for a nap\n"
+				+ "Press 5 to check on Gizmo\n"
+				+ "Press 6 to check the time\n" 
+				+ "Press 7 to do nothing\n" 
+				+ "Press 8 to exit\n";
 		this.cleanSubMenu =
 				"How would you like to clean Gizmo?\n"
 				+ "Press 1 to give Gizmo a bath\n"
@@ -58,14 +60,14 @@ public class VirtualPetMenus {
 				+ "Press 3 to return to the main menu\n";
 		this.multipleMogwaiMenu = 
 				"What would you like to do?\n"
-				+ "Press 1 to Ask A Neighbor to Take A Mogwai\n"
-				+ "Press 2 to Check on Gizmo\n"
-				+ "Press 3 to Check the Time\n" ;
+				+ "Press 1 to ask a neighbor to take a mogwai\n"
+				+ "Press 2 to check on Gizmo\n"
+				+ "Press 3 to check the time\n" ;
 		this.entertainmentSubMenu = 
 				"What would you like to do with Gizmo?\n"
 				+ "Press 1 to sing with Gizmo\n"
 				+ "Press 2 to go on a walk with Gizmo\n"
-				+ "Press 3 to Check the Time\n"
+				+ "Press 3 to check the time\n"
 				+ "Press 4 to return to the main menu\n";
 				
 	}
