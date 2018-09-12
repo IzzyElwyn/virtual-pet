@@ -86,7 +86,7 @@ public class VirtualPet {
 
 		gizmoSingsASCIIArtAndMessage();
 
-		Thread.sleep(9000);
+		Thread.sleep(1000);
 		if (getBoredom() + 25 > 100) {
 			boredom = 100;
 		} else {
@@ -148,20 +148,8 @@ public class VirtualPet {
 		return mogwai.size();
 	}
 
-	public void otherMogwaiAreGremlinsNow() {
-	
-		for (int i = mogwai.size() - 1; i > 0; i--) {
-			mogwai.get(0).setIsGremlin(true);
-		}
-		
-	}
-		
-	public boolean otherMogwaiAreGremlins() {
-		return mogwai.get(0).getIsGremlin();
-	}
-
 	public String offerOtherMogwaiToNeighbor() {
-		int randomNumber = rand.nextInt(100) + 1;
+		int randomNumber = rand.nextInt(2) + 1;
 		if ((randomNumber % 2) == 0) {
 			giveAwayMogwai();
 			return "Your Neighbor Accepted The Mogwai!";
@@ -175,7 +163,7 @@ public class VirtualPet {
 		mogwai.remove(i);
 
 	}
-
+//using the tick function to help keep track of the in-game time as well
 	public void tick() throws InterruptedException {
 		int randomTick = rand.nextInt(5) + 1;
 		if (getHunger() - randomTick < 0) {
@@ -268,10 +256,12 @@ public class VirtualPet {
 			return "It is 12 AM";
 		}
 	}
-	
+
 	public String gizmosNote() {
-		return "The Note Reads: " + "\n\"Follow These Three Rules At All Costs"
-				+ "\n1. Never Get Gizmo Wet" + "\n2. Never Take Gizmo Out In The Sun"
+		return "The Note Reads: " 
+				+ "\n\"Follow These Three Rules At All Costs" 
+				+ "\n1. Never Get Gizmo Wet"
+				+ "\n2. Never Take Gizmo Out In The Sun" 
 				+ "\n3. Never Ever Feed A Mogwai After Midnight\"\n\n\n\n\n";
 	}
 
