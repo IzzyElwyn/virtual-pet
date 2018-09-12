@@ -16,14 +16,12 @@ What can I do with my new bff Gizmo?
     - Give Gizmo a Dust Bath (Like a chinchilla)
     - Give Gizmo a regular Water Bath
       (If you water him more mogwai appear
-       you must give them away to your neighbors or Gizmo will be too stressed out to play
+       you must give them away to your neighbors before the countdown hits 0 or they will turn into a mogwai
        (neighbors will randomly accept or reject the mogwai)
 
-       *planning to add a timer in this loop, if the additional mogwai are not given away before it hits 0, they turn into gremlins and you lose the game*
 - Play with Gizmo
     - Go for a walk!
-
-       *planning to add a time check component here, if the walk is during the day, the sunlight will burn Gizmo to a crisp :(*
+      - if you take Gizmo out in the sunlight, he'll burn to a crisp and the game will end :( 
     - Sing
 - Check the Time
     - returns the hour in-game
